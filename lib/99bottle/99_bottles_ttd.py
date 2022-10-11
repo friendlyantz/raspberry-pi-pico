@@ -4,7 +4,7 @@ from time import sleep
 
 led = Pin('LED', Pin.OUT)
 baton = _thread.allocate_lock()
-sleep_time = 0.5
+sleep_time = 1.5
 tim = Timer()
 
 def tick(timer):
@@ -420,7 +420,7 @@ VS subject:
 {}
 """.format(expected, subject)
             )
-
+    sleep(sleep_time)
 def run_all_specs():
     test_99_bottles_verse()
     test_75_bottles_verse()
