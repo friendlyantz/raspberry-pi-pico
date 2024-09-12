@@ -1,3 +1,4 @@
+# noinspection MicroPythonRequirements
 import board
 import digitalio
 from time import sleep

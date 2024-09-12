@@ -1,3 +1,23 @@
+## PyCharm
+
+### for CircuitPython
+
+for finding usb device ` mpremote connect list` command from below can be useful
+or just
+```shell
+ls /dev > temp.patch
+diff <(ls /dev ) <(cat temp.patch ) | grep -E "^[<>]" | sed 's/[<>] //'
+```
+
+https://learn.adafruit.com/welcome-to-circuitpython/pycharm-and-circuitpython
+https://www.youtube.com/watch?v=i7jEa2LyJtk
+
+terminal IO for Mac/Pycharm `brew install tio`
+
+```shell
+circuitpython_setboard raspberry_pi_pico_w
+```
+
 ## MicroPython Runner Installation
 ```sh
 pip install mpremote
