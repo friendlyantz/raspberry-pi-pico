@@ -12,6 +12,7 @@ import adafruit_ssd1306
 # SDA = GP4
 i2c = busio.I2C(board.GP5, board.GP4, frequency=50000)
 scd = adafruit_scd30.SCD30(i2c)
+time.sleep(0.5) # Wait a bit for the sensor to boot up
 oled = adafruit_ssd1306.SSD1306_I2C(128, 64, i2c)
 oled.fill(0)
 oled.text("lalal", 22,22, True)
