@@ -1,8 +1,17 @@
+# Sandbox for some of my Pico hardware projects
+
+- CO2 sensor with MQTT
+- LoraWan messanger
+- Wifi messanger
+
+[CO2 sensor on a breadboard MQTT demo video](https://res.cloudinary.com/takeonme/video/upload/f_auto:video,q_auto/v1/all_github_pages/cx6jc7w2y5npa7x7kynb)
+
 # for Python
 
 on CircuitPython main script is called `code.py`, on MicroPython `main.py`
 
 ## PyCharm
+
 
 ### for CircuitPython
 
