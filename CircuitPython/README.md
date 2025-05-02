@@ -9,3 +9,5 @@ wget -O font5x8.bin https://github.com/adafruit/Adafruit_CircuitPython_framebuf/
 need these libs:
 - adafruit_ssd1306
 - AND adafruit_framebuf
+
+on CircuitPython main script is called `code.py`, on MicroPython `main.py`

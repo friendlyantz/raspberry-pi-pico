@@ -1,3 +1,7 @@
+# for Python
+
+on CircuitPython main script is called `code.py`, on MicroPython `main.py`
+
 ## PyCharm
 
 ### for CircuitPython
