@@ -11,6 +11,21 @@
 
 tbc
 
+# Rust
+
+> LED: Pico W and Pico 2 W has the same complexity aroud onboard LED being controlled by WIFI chip, hence we use CYW43 driver/firmware that is now part of `embassy` [Embassy on Github](https://github.com/embassy-rs/embassy)
+
+[ ARTICLE: blinker on Pico with WiFI chips - led pin is not a simple rp pinout, but rather a WiFI aux](https://www.darrik.dev/writing/blinking-pico-w-onboard-led-rust/)
+
+
+```sh
+# cd into projects/relevant_chip 
+# picow should work with Pico 1 W, and any RP2040 chip
+# pico2w tbc and intended for RP2350/235X chips
+cargo run --release --bin blinky_wifi
+```
+
+
 # for Python
 
 on CircuitPython main script is called `code.py`, on MicroPython `main.py`
