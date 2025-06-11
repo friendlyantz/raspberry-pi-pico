@@ -3,6 +3,7 @@ import board
 import busio
 import adafruit_scd30
 import adafruit_ssd1306
+import microcontroller
 
 import adafruit_minimqtt.adafruit_minimqtt as MQTT
 import ssl
@@ -66,16 +67,57 @@ print("Ambient Pressure:", scd.ambient_pressure)
 # scd.altitude = 100
 print("Altitude:", scd.altitude, "meters above sea level")
 
-# scd.forced_recalibration_reference = 409
+scd.forced_recalibration_reference = 409
 print("Forced recalibration reference:", scd.forced_recalibration_reference)
 print("")
 
 oled.fill(0)
 oled.text('connecting', 0, 20, True)
 oled.show()
-wifi.radio.connect(WIFI_SSID, WIFI_PASSWORD)
-oled.text('connected', 0, 30, True)
-oled.show()
+
+WIFI_TIMEOUT = 10
+start_time = time.monotonic()
+attempt_count = 0
+MAX_ATTEMPTS = 5
+
+try:
+    while attempt_count < MAX_ATTEMPTS:
+        attempt_count += 1
+        try:
+            oled.fill(0)
+            oled.text(f'WiFi try {attempt_count}/{MAX_ATTEMPTS}', 0, 20, True)
+            oled.show()
+            wifi.radio.connect(WIFI_SSID, WIFI_PASSWORD)
+            break 
+        except Exception as e:
+            if time.monotonic() - start_time > WIFI_TIMEOUT or attempt_count >= MAX_ATTEMPTS:
+                oled.fill(0)
+                oled.text('WiFi failed', 0, 20, True)
+                oled.text('Rebooting...', 0, 30, True)
+                oled.show()
+                time.sleep(3)
+                import microcontroller
+                microcontroller.reset()
+          
+            oled.fill(0)
+            oled.text('WiFi retry', 0, 20, True)
+            oled.text(f'Error: {str(e)[:16]}', 0, 30, True)
+            oled.show()
+            time.sleep(2)
+
+    oled.fill(0)
+    oled.text('WiFi Connected!', 0, 20, True)
+    oled.text(f'{wifi.radio.ipv4_address}', 0, 30, True)
+    oled.show()
+    time.sleep(2)
+except Exception as conn_error:
+    oled.fill(0)
+    oled.text('Fatal WiFi Error', 0, 20, True)
+    oled.text('Rebooting...', 0, 30, True)
+    oled.show()
+    time.sleep(3)
+    import microcontroller
+    microcontroller.reset()
 
 
 
